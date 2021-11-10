@@ -2,9 +2,7 @@ package com.engeto.examples;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class StateList {
     private List<State> States = new ArrayList<>();
@@ -28,11 +26,36 @@ public class StateList {
     }
 
 
+    public String getOverValue() {
+        double maxVAT = 20;
+        List<State> StatesOver = new ArrayList<>();
+        List<State> StatesOther = new ArrayList<>();
+        String otherState = "\nSazba VAT " + maxVAT + " % nebo nižší nebo používají speciální sazbu: ";
+        String out = "";
+        for (State item : States) {
+            if (item.fullVAT > maxVAT && ! item.hasSpecialVAT) {
+                StatesOver.add(item);
+            }
+            else {
+                otherState += item.shortcut + ", ";
+                //StatesOther.add(item);
+            }
 
+        }
+
+        Collections.sort(StatesOver, new StatesVATComparator());
+
+        for (State item : StatesOver) out += item.getStateBasicInfo();
+
+
+
+        return out + otherState;
+    }
 
     public String getAllStatesBasicInfo() {
         String out = "";
         for (State item : States) out += item.getStateBasicInfo();
         return out;
     }
+
 }
