@@ -3,6 +3,7 @@ package com.engeto.examples;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.util.*;
 
 public class StateList {
@@ -42,7 +43,8 @@ public class StateList {
         String otherState = "\nSazba VAT " + maxVAT + " % nebo nižší nebo používají speciální sazbu: ";
         String out = "";
         for (State item : States) {
-            if (item.fullVAT > maxVAT && ! item.hasSpecialVAT) {
+            int res = item.fullVAT.compareTo(BigDecimal.valueOf(maxVAT));
+            if (res > 0 && ! item.hasSpecialVAT) {
                 StatesOver.add(item);
             }
             else {

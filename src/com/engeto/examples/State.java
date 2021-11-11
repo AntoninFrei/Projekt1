@@ -2,26 +2,27 @@ package com.engeto.examples;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.math.BigDecimal;
 import java.util.Scanner;
 import java.util.Comparator;
 
 public class State {
     String shortcut;
     String name;
-    Double fullVAT;
-    Double lowerVAT;
+    BigDecimal fullVAT;
+    BigDecimal lowerVAT;
     boolean hasSpecialVAT;
 
     public State(String shortcut, String name, String fullVAT, String lowerVAT, String hasSpecialVAT)  {
         this.shortcut = shortcut;
         this.name = name;
-        this.fullVAT = Double.parseDouble(fullVAT.replace(",","."));
-        this.lowerVAT = Double.parseDouble(lowerVAT.replace(",","."));
+        this.fullVAT = new BigDecimal(fullVAT.replace(",","."));
+        this.lowerVAT = new BigDecimal(lowerVAT.replace(",","."));
         this.hasSpecialVAT = Boolean.parseBoolean(hasSpecialVAT);
 
     }
 
-    public State(String shortcut, String name, Double fullVAT, Double lowerVAT, Boolean hasSpecialVAT)  {
+    public State(String shortcut, String name, BigDecimal fullVAT, BigDecimal lowerVAT, Boolean hasSpecialVAT)  {
         this.shortcut = shortcut;
         this.name = name;
         this.fullVAT = fullVAT;
@@ -46,11 +47,12 @@ public class State {
         return name;
     }
 
-    public double getFullVAT() {
+    public BigDecimal getFullVAT() {
         return fullVAT;
     }
 
-    public double getLowerVAT() {
+
+    public BigDecimal getLowerVAT() {
         return lowerVAT;
     }
 

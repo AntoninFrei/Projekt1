@@ -31,7 +31,7 @@ public class Main {
         System.out.println("Základní výpis:");
         System.out.println(listOfState.getAllStatesBasicInfo());
 
-        //System.out.println(listOfState.getOverValue(maxVAT));
+        System.out.println(listOfState.getOverValue(maxVAT));
 
         listOfState.exportToFile(maxVAT);
 
