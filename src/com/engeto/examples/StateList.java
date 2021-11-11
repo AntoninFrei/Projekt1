@@ -33,8 +33,9 @@ public class StateList {
         }
     }
 
-    public void exportToFile(int maxVAT) throws StateException {
-        String fileName = "vat-over-" + maxVAT + ".txt";
+    public void exportToFile(BigDecimal maxVAT) throws StateException {
+        String fileName = "vat-over-" + maxVAT;
+        fileName = fileName.replace('.', '_') + ".txt";
         try (PrintWriter writer = new PrintWriter(new File(fileName))) {
             writer.println(this.getOverValue(maxVAT));
         } catch (FileNotFoundException e) {
@@ -43,13 +44,13 @@ public class StateList {
     }
 
 
-    public String getOverValue(int maxVAT) {
+    public String getOverValue(BigDecimal maxVAT) {
 
         List<State> StatesOver = new ArrayList<>();
         String otherState = "\nSazba VAT " + maxVAT + " % nebo nižší nebo používají speciální sazbu: ";
         String out = "";
         for (State item : States) {
-            int res = item.fullVAT.compareTo(BigDecimal.valueOf(maxVAT));
+            int res = item.fullVAT.compareTo(maxVAT);
             if (res > 0 && ! item.hasSpecialVAT) {
                 StatesOver.add(item);
             }

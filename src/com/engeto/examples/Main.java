@@ -1,6 +1,7 @@
 package com.engeto.examples;
 
 import java.io.FileNotFoundException;
+import java.math.BigDecimal;
 
 import static com.engeto.examples.ReadInput.safeReadInt;
 
@@ -8,8 +9,9 @@ public class Main {
 
     public static void main(String[] args) {
         String implicit = "20";
-        int maxVAT = -1;
-        while (maxVAT < 0) {
+        BigDecimal maxVAT = BigDecimal.valueOf(-1);
+
+        while (BigDecimal.valueOf(0).compareTo(maxVAT) > 0) {
             System.out.println("Zadej hodnotu daně která tě zajímá, nebo klávesou \"Enter\" potvrď výchozí hodnotu "
                     + implicit + " %.");
             try {
@@ -36,8 +38,6 @@ public class Main {
         }
         System.out.println("Základní výpis:");
         System.out.println(listOfState.getAllStatesBasicInfo());
-
-        System.out.println(listOfState.getOverValue(maxVAT));
 
         try {
             listOfState.exportToFile(maxVAT);

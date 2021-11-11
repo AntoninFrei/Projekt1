@@ -34,7 +34,6 @@ public class State {
 
 
             this.hasSpecialVAT = Boolean.parseBoolean(hasSpecialVAT);
-            System.out.println(hasSpecialVAT +"/"+this.hasSpecialVAT);
         }
         else {
             throw new StateException(setMesssage(hasSpecialVAT, name));
