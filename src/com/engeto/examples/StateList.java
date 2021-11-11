@@ -26,7 +26,7 @@ public class StateList {
         }
     }
 
-    public void exportToFile(double maxVAT) {
+    public void exportToFile(int maxVAT) {
         String fileName = "vat-over-" + maxVAT + ".txt";
         try (PrintWriter writer = new PrintWriter(new File(fileName))) {
             writer.println(this.getOverValue(maxVAT));
@@ -36,7 +36,7 @@ public class StateList {
     }
 
 
-    public String getOverValue(double maxVAT) {
+    public String getOverValue(int maxVAT) {
 
         List<State> StatesOver = new ArrayList<>();
         String otherState = "\nSazba VAT " + maxVAT + " % nebo nižší nebo používají speciální sazbu: ";
