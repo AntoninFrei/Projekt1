@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 public class Main {
 
     public static void main(String[] args) {
+        double maxVAT = 17;
         StateList listOfState = new StateList();
 
         try {
@@ -16,7 +17,9 @@ public class Main {
         System.out.println("Základní výpis:");
         System.out.println(listOfState.getAllStatesBasicInfo());
 
-        System.out.println(listOfState.getOverValue());
+        System.out.println(listOfState.getOverValue(maxVAT));
+
+        listOfState.exportToFile(maxVAT);
 
 
     }

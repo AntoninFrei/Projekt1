@@ -2,6 +2,7 @@ package com.engeto.examples;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.*;
 
 public class StateList {
@@ -25,11 +26,19 @@ public class StateList {
         }
     }
 
+    public void exportToFile(double maxVAT) {
+        String fileName = "vat-over-" + maxVAT + ".txt";
+        try (PrintWriter writer = new PrintWriter(new File(fileName))) {
+            writer.println(this.getOverValue(maxVAT));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
-    public String getOverValue() {
-        double maxVAT = 20;
+
+    public String getOverValue(double maxVAT) {
+
         List<State> StatesOver = new ArrayList<>();
-        List<State> StatesOther = new ArrayList<>();
         String otherState = "\nSazba VAT " + maxVAT + " % nebo nižší nebo používají speciální sazbu: ";
         String out = "";
         for (State item : States) {
@@ -38,14 +47,13 @@ public class StateList {
             }
             else {
                 otherState += item.shortcut + ", ";
-                //StatesOther.add(item);
             }
 
         }
 
         Collections.sort(StatesOver, new StatesVATComparator());
 
-        for (State item : StatesOver) out += item.getStateBasicInfo();
+        for (State item : StatesOver) out += item.getStateBothInfo() + "\n";
 
 
 
@@ -54,7 +62,7 @@ public class StateList {
 
     public String getAllStatesBasicInfo() {
         String out = "";
-        for (State item : States) out += item.getStateBasicInfo();
+        for (State item : States) out += item.getStateBasicInfo() + "\n";
         return out;
     }
 
