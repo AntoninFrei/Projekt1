@@ -1,6 +1,6 @@
 AT	Austria	20	10	true
 BE	Belgium	21	12	true
-BG	Bulgaria	20	9	false
+BG	Bulgaria	20	9	True
 CY	Cyprus	19	9	false
 CZ	Czech Republic	21	15	false
 DK	Denmark	25	25	false

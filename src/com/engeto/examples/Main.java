@@ -21,19 +21,30 @@ public class Main {
 
 
         StateList listOfState = new StateList();
-
+        String inputFile = "vat-eu.txt";
         try {
-            listOfState.importFromFile("vat-eu.txt");
+            listOfState.importFromFile(inputFile);
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();
+        }
+        catch (StateException e) {
+            System.out.println("Chyba při čtení souboru: " + inputFile + ".\n");
+            e.printStackTrace();
+            System.out.println("Při této chybě musí být aplikace ukončena!\n");
+            System.exit(0);
         }
         System.out.println("Základní výpis:");
         System.out.println(listOfState.getAllStatesBasicInfo());
 
         System.out.println(listOfState.getOverValue(maxVAT));
 
-        listOfState.exportToFile(maxVAT);
+        try {
+            listOfState.exportToFile(maxVAT);
+        }
+        catch (StateException e) {
+            e.printStackTrace();
+        }
 
 
     }
