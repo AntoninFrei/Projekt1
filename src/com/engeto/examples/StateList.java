@@ -62,6 +62,7 @@ public class StateList {
         Collections.sort(StatesOver, new StatesVATComparator());
 
         for (State item : StatesOver) out += item.getStateBothInfo() + "\n";
+        out += "========================================================";
 
 
 

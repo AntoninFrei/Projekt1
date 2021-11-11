@@ -58,7 +58,15 @@ public class State {
     }
 
     public String getStateBasicInfo() {
-        return this.name + " (" + this.shortcut + "): " + this.fullVAT + " %";
+        String out = this.name + " (" + this.shortcut + "): ";
+
+        for (int i = out.length(); i<40; i++) {
+            out += " ";
+        }
+
+        out += this.fullVAT + " %";
+
+        return out;
     }
 
     public String getStateBothInfo() {
